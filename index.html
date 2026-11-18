@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2-sonli o‘rta ta’lim maktabi — bilingual school website demo.">
+<meta name="theme-color" content="#102d55">
+<title>2-sonli o‘rta ta’lim maktabi | School No. 2</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#f5f7fb;
+  --surface:#ffffff;
+  --text:#14233d;
+  --muted:#68778e;
+  --primary:#174783;
+  --accent:#d9a94c;
+  --border:#e5eaf1;
+  --shadow:0 10px 35px rgba(20,45,80,.07);
+}
+body.dark {
+  --bg:#0d1727;
+  --surface:#152238;
+  --text:#edf3ff;
+  --muted:#a6b4ca;
+  --primary:#78aaf2;
+  --accent:#e5bd6d;
+  --border:#293b55;
+  --shadow:0 10px 35px rgba(0,0,0,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.65;transition:.25s;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.container{width:min(1160px,92%);margin:auto}
+
+/* DEMO BANNER */
+.demo-banner{
+  background:#fff3d9;color:#725018;
+  padding:9px 15px;text-align:center;
+  font-size:12px;font-weight:700;
+}
+
+/* TOP BAR */
+.topbar{background:#102d55;color:white;font-size:13px}
+.top-inner{display:flex;justify-content:space-between;
+align-items:center;padding:10px 0;gap:15px;flex-wrap:wrap}
+.top-details{display:flex;gap:24px;flex-wrap:wrap}
+
+/* HEADER */
+header{
+  background:var(--surface);
+  position:sticky;top:0;z-index:100;
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  display:flex;justify-content:space-between;
+  align-items:center;min-height:82px;gap:20px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#eaf0fa;color:#174783;
+  font-size:25px;
+}
+.brand strong{display:block;font-size:16px}
+.brand small{color:var(--muted)}
+.nav-links{display:flex;align-items:center;gap:25px}
+.nav-links a{font-size:13px;font-weight:700}
+.nav-links a:hover{color:var(--primary)}
+.controls{display:flex;gap:8px;align-items:center}
+.control{
+  border:1px solid var(--border);
+  color:var(--text);background:var(--surface);
+  padding:8px 12px;border-radius:9px;
+  font-size:12px;font-weight:700;
+}
+.menu-btn{display:none}
+
+/* HERO */
+.hero{
+  min-height:510px;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  background:
+  linear-gradient(90deg,rgba(8,28,53,.96),rgba(8,28,53,.78),rgba(8,28,53,.15)),
+  url('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=85')
+  center/cover;
+}
+.hero-content{padding:90px 0;color:white;max-width:650px}
+.eyebrow{
+  color:#f0c979;font-size:12px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,6vw,68px);
+  line-height:1.12;margin:18px 0;
+}
+.hero p{font-size:17px;color:#e1e9f5;max-width:530px}
+.hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:13px 21px;border-radius:9px;
+  font-weight:700;font-size:13px;transition:.2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-light{background:white;color:#15345d}
+.btn-outline{border:1px solid white;color:white}
+
+/* SECTION */
+section{padding:78px 0}
+.section-heading{text-align:center;margin-bottom:40px}
+.section-heading span{color:var(--primary);font-size:12px;
+font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.section-heading h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4vw,39px);margin:9px 0;
+}
+.section-heading p{color:var(--muted);font-size:14px}
+
+/* VALUES */
+.values{padding:30px 0}
+.value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.value-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:24px 17px;
+  box-shadow:var(--shadow);text-align:center;
+}
+.value-card .icon{font-size:29px}
+.value-card h3{font-size:14px;margin:10px 0 3px}
+.value-card p{color:var(--muted);font-size:12px}
+
+/* ABOUT */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1.2fr;
+  gap:45px;align-items:center;
+}
+.about-image{
+  min-height:340px;border-radius:17px;
+  background:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=85') center/cover;
+  box-shadow:var(--shadow);
+}
+.about-text h2{
+  font-family:'Playfair Display',serif;
+  font-size:35px;margin-bottom:15px;
+}
+.about-text p{color:var(--muted);margin-bottom:15px;font-size:14px}
+.info-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.info-item{
+  background:var(--surface);border:1px solid var(--border);
+  padding:15px;border-radius:10px;
+}
+.info-item small{display:block;color:var(--muted);font-size:11px}
+.info-item strong{font-size:13px}
+
+/* ACADEMICS */
+.academic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.academic-card{
+  background:var(--surface);padding:26px;
+  border:1px solid var(--border);border-radius:14px;
+  transition:.2s;
+}
+.academic-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.academic-card .icon{font-size:30px}
+.academic-card h3{font-size:17px;margin:12px 0 8px}
+.academic-card p{font-size:13px;color:var(--muted)}
+
+/* PROFILE */
+.profile-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+}
+.profile-row{
+  display:flex;justify-content:space-between;gap:20px;
+  padding:17px 22px;border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+.profile-row:last-child{border:0}
+.profile-row span{color:var(--muted);text-align:right}
+.notice{
+  margin-top:20px;padding:17px;
+  background:rgba(217,169,76,.12);
+  border-left:3px solid var(--accent);
+  border-radius:5px;font-size:12px;color:var(--muted);
+}
+
+/* ACHIEVEMENTS */
+.achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.achievement{
+  background:var(--surface);padding:25px;
+  border-radius:14px;border:1px solid var(--border);
+}
+.achievement .icon{font-size:28px}
+.achievement h3{font-size:15px;margin:10px 0}
+.achievement p{color:var(--muted);font-size:13px}
+
+/* CONTACT */
+.contact-box{
+  background:#102d55;color:white;border-radius:18px;
+  padding:45px;text-align:center;
+}
+.contact-box h2{
+  font-family:'Playfair Display',serif;
+  font-size:34px;margin-bottom:12px;
+}
+.contact-box p{color:#d1dced;font-size:14px}
+
+/* FOOTER */
+footer{background:#0b1c32;color:white;padding:35px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer p{font-size:12px;color:#aabbd2}
+footer strong{font-size:14px}
+
+@media(max-width:850px){
+  .nav-links{
+    display:none;position:absolute;top:82px;left:0;right:0;
+    padding:22px;background:var(--surface);
+    border-bottom:1px solid var(--border);
+    flex-direction:column;align-items:flex-start;gap:18px;
+  }
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+  .value-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:25px}
+}
+@media(max-width:600px){
+  .top-inner{justify-content:center}
+  .top-details{justify-content:center;gap:8px 16px}
+  .hero{min-height:470px}
+  .hero-content{padding:65px 0}
+  .hero p{font-size:15px}
+  section{padding:55px 0}
+  .academic-grid,.achievement-grid{grid-template-columns:1fr}
+  .info-list{grid-template-columns:1fr}
+  .contact-box{padding:30px 18px}
+  .profile-row{font-size:12px}
+  .brand strong{font-size:13px}
+  .logo{width:40px;height:40px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="demo-banner" id="demoBanner">
+  DEMO VERSION — Bu rasmiy maktab sayti emas. Ma'lumotlar namuna sifatida berilgan.
+</div>
+
+<div class="topbar">
+  <div class="container top-inner">
+    <div class="top-details">
+      <span>📍 Buxoro viloyati, O‘zbekiston</span>
+      <span>✉ Rasmiy aloqa ma'lumotlari keyin qo‘shiladi</span>
+    </div>
+    <span>UZ / EN</span>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="brand">
+      <div class="logo">📖</div>
+      <div>
+        <strong>2-sonli o‘rta ta’lim maktabi</strong>
+        <small>School No. 2</small>
+      </div>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" data-uz="Bosh sahifa" data-en="Home">Bosh sahifa</a>
+      <a href="#about" data-uz="Maktab haqida" data-en="About">Maktab haqida</a>
+      <a href="#academics" data-uz="Ta'lim" data-en="Academics">Ta'lim</a>
+      <a href="#profile" data-uz="Maktab profili" data-en="School Profile">Maktab profili</a>
+      <a href="#achievements" data-uz="Yutuqlar" data-en="Achievements">Yutuqlar</a>
+      <a href="#contact" data-uz="Aloqa" data-en="Contact">Aloqa</a>
+    </nav>
+
+    <div class="controls">
+      <button class="control" onclick="setLanguage()" id="langBtn">EN</button>
+      <button class="control" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      <button class="control menu-btn" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <div class="eyebrow" data-uz="TA'LIM • BILIM • KELAJAK" data-en="EDUCATION • KNOWLEDGE • FUTURE">
+      TA'LIM • BILIM • KELAJAK
+    </div>
+    <h1 data-uz="2-sonli o‘rta ta’lim maktabi" data-en="School No. 2">
+      2-sonli o‘rta ta’lim maktabi
+    </h1>
+    <p data-uz="Sifatli ta'lim, keng imkoniyatlar va har tomonlama rivojlanish sari." data-en="Towards quality education, wider opportunities and comprehensive development.">
+      Sifatli ta'lim, keng imkoniyatlar va har tomonlama rivojlanish sari.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-light" href="#about" data-uz="Maktab haqida →" data-en="About the School →">Maktab haqida →</a>
+      <a class="btn btn-outline" href="#profile" data-uz="Maktab profili →" data-en="School Profile →">Maktab profili →</a>
+    </div>
+  </div>
+</section>
+
+<div class="values container">
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="icon">🎓</div>
+      <h3 data-uz="Sifatli ta'lim" data-en="Quality Education">Sifatli ta'lim</h3>
+      <p data-uz="Bilim va ko‘nikmalar" data-en="Knowledge and skills">Bilim va ko‘nikmalar</p>
+    </div>
+    <div class="value-card">
+      <div class="icon">🤝</div>
+      <h3 data-uz="Do‘stona muhit" data-en="Supportive Environment">Do‘stona muhit</h3>
+      <p data-uz="Hamkorlik va hurmat" data-en="Cooperation and respect">Hamkorlik va hurmat</p>
+    </div>
+    <div class="value-card">
+      <div class="icon">🏆</div>
+      <h3 data-uz="Yutuqlar" data-en="Achievements">Yutuqlar</h3>
+      <p data-uz="Intilish va rivojlanish" data-en="Progress and development">Intilish va rivojlanish</p>
+    </div>
+    <div class="value-card">
+      <div class="icon">🌱</div>
+      <h3 data-uz="Rivojlanish" data-en="Development">Rivojlanish</h3>
+      <p data-uz="Har tomonlama o‘sish" data-en="Holistic growth">Har tomonlama o‘sish</p>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-image"></div>
+    <div class="about-text">
+      <div class="eyebrow" data-uz="BIZ HAQIMIZDA" data-en="WHO WE ARE">BIZ HAQIMIZDA</div>
+      <h2 data-uz="Maktab haqida" data-en="About Our School">Maktab haqida</h2>
+      <p data-uz="2-sonli o‘rta ta’lim maktabi haqidagi ushbu namuna sahifasi ta'lim muassasasining faoliyati, qadriyatlari va akademik yo‘nalishlarini tanishtirish uchun yaratilgan." data-en="This sample page for School No. 2 is designed to introduce the institution's activities, values and academic approach.">
+        2-sonli o‘rta ta’lim maktabi haqidagi ushbu namuna sahifasi ta'lim muassasasining faoliyati, qadriyatlari va akademik yo‘nalishlarini tanishtirish uchun yaratilgan.
+      </p>
+      <p data-uz="Haqiqiy maktab tarixi, ta'lim faoliyati va rasmiy ma'lumotlar keyinchalik maktab ma'muriyati tomonidan tasdiqlangan holda kiritiladi." data-en="The actual school history, academic activities and official information will be added later after verification by the school administration.">
+        Haqiqiy maktab tarixi, ta'lim faoliyati va rasmiy ma'lumotlar keyinchalik maktab ma'muriyati tomonidan tasdiqlangan holda kiritiladi.
+      </p>
+      <div class="info-list">
+        <div class="info-item">
+          <small data-uz="Muassasa raqami" data-en="Institution number">Muassasa raqami</small>
+          <strong>02</strong>
+        </div>
+        <div class="info-item">
+          <small data-uz="Joylashuv" data-en="Location">Joylashuv</small>
+          <strong data-uz="Buxoro viloyati" data-en="Bukhara Region">Buxoro viloyati</strong>
+        </div>
+        <div class="info-item">
+          <small data-uz="Ta'lim tili" data-en="Language of instruction">Ta'lim tili</small>
+          <strong data-uz="Tasdiqlanishi kerak" data-en="To be verified">Tasdiqlanishi kerak</strong>
+        </div>
+        <div class="info-item">
+          <small data-uz="Tashkil etilgan yil" data-en="Established">Tashkil etilgan yil</small>
+          <strong data-uz="Ma'lumot kiritilmagan" data-en="Not provided">Ma'lumot kiritilmagan</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="academics">
+  <div class="container">
+    <div class="section-heading">
+      <span>ACADEMICS</span>
+      <h2 data-uz="Ta'lim jarayoni" data-en="Academic Programs">Ta'lim jarayoni</h2>
+      <p data-uz="O‘quv faoliyati haqida asosiy yo‘nalishlar" data-en="An overview of academic activities">O‘quv faoliyati haqida asosiy yo‘nalishlar</p>
+    </div>
+    <div class="academic-grid">
+      <div class="academic-card">
+        <div class="icon">📚</div>
+        <h3 data-uz="O‘quv dasturi" data-en="Curriculum">O‘quv dasturi</h3>
+        <p data-uz="Maktabda o‘qitiladigan fanlar va o‘quv dasturi haqida tasdiqlangan ma'lumotlar shu yerda joylashtiriladi." data-en="Verified information about school subjects and curriculum will be published here.">Maktabda o‘qitiladigan fanlar va o‘quv dasturi haqida tasdiqlangan ma'lumotlar shu yerda joylashtiriladi.</p>
+      </div>
+      <div class="academic-card">
+        <div class="icon">📊</div>
+        <h3 data-uz="Baholash tizimi" data-en="Grading System">Baholash tizimi</h3>
+        <p data-uz="Baholash mezonlari va akademik natijalar haqida rasmiy ma'lumotlar." data-en="Official information about grading criteria and academic results.">Baholash mezonlari va akademik natijalar haqida rasmiy ma'lumotlar.</p>
+      </div>
+      <div class="academic-card">
+        <div class="icon">🗓️</div>
+        <h3 data-uz="Akademik taqvim" data-en="Academic Calendar">Akademik taqvim</h3>
+        <p data-uz="O‘quv yili, ta'tillar va muhim sanalar haqida ma'lumotlar." data-en="Information about the school year, holidays and important dates.">O‘quv yili, ta'tillar va muhim sanalar haqida ma'lumotlar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="profile">
+  <div class="container">
+    <div class="section-heading">
+      <span>SCHOOL INFORMATION</span>
+      <h2 data-uz="Maktab profili" data-en="School Profile">Maktab profili</h2>
+      <p data-uz="Universitetlar va boshqa tashkilotlar uchun muassasa haqida ma'lumot" data-en="Institutional information for universities and other organizations">Universitetlar va boshqa tashkilotlar uchun muassasa haqida ma'lumot</p>
+    </div>
+    <div class="profile-box">
+      <div class="profile-row"><strong data-uz="Muassasa nomi" data-en="Institution name">Muassasa nomi</strong><span>2-sonli o‘rta ta’lim maktabi</span></div>
+      <div class="profile-row"><strong data-uz="Hudud" data-en="Region">Hudud</strong><span>Buxoro viloyati, O‘zbekiston</span></div>
+      <div class="profile-row"><strong data-uz="Muassasa turi" data-en="Institution type">Muassasa turi</strong><span data-uz="Umumiy o‘rta ta'lim — demo" data-en="General secondary education — demo">Umumiy o‘rta ta'lim — demo</span></div>
+      <div class="profile-row"><strong data-uz="Baholash shkalasi" data-en="Grading scale">Baholash shkalasi</strong><span data-uz="Rasmiy tasdiq kutilmoqda" data-en="Official confirmation pending">Rasmiy tasdiq kutilmoqda</span></div>
+      <div class="profile-row"><strong data-uz="Bitiruv talablari" data-en="Graduation requirements">Bitiruv talablari</strong><span data-uz="Ma'lumot kiritilmagan" data-en="Not provided">Ma'lumot kiritilmagan</span></div>
+      <div class="profile-row"><strong data-uz="Tashkil etilgan yil" data-en="Year established">Tashkil etilgan yil</strong><span>—</span></div>
+    </div>
+    <div class="notice" data-uz="MUHIM: Ushbu School Profile faqat namuna. Universitetlarga yuborishdan oldin barcha akademik ma'lumotlar maktab ma'muriyati tomonidan tekshirilishi va tasdiqlanishi kerak." data-en="IMPORTANT: This School Profile is a sample only. All academic information must be reviewed and approved by the school administration before being submitted to universities.">
+      MUHIM: Ushbu School Profile faqat namuna. Universitetlarga yuborishdan oldin barcha akademik ma'lumotlar maktab ma'muriyati tomonidan tekshirilishi va tasdiqlanishi kerak.
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="container">
+    <div class="section-heading">
+      <span>STUDENT LIFE</span>
+      <h2 data-uz="Yutuqlar va imkoniyatlar" data-en="Achievements and Opportunities">Yutuqlar va imkoniyatlar</h2>
+      <p data-uz="Haqiqiy natijalar keyinchalik tasdiqlangan holda qo‘shiladi." data-en="Verified achievements will be added later.">Haqiqiy natijalar keyinchalik tasdiqlangan holda qo‘shiladi.</p>
+    </div>
+    <div class="achievement-grid">
+      <div class="achievement"><div class="icon">🥇</div><h3 data-uz="Fan olimpiadalari" data-en="Academic Olympiads">Fan olimpiadalari</h3><p data-uz="O‘quvchilar ishtirok etgan olimpiadalar va natijalar." data-en="Olympiads and student results.">O‘quvchilar ishtirok etgan olimpiadalar va natijalar.</p></div>
+      <div class="achievement"><div class="icon">⚽</div><h3 data-uz="Sport musobaqalari" data-en="Sports Competitions">Sport musobaqalari</h3><p data-uz="Sport tadbirlari va tasdiqlangan yutuqlar." data-en="Sports events and verified achievements.">Sport tadbirlari va tasdiqlangan yutuqlar.</p></div>
+      <div class="achievement"><div class="icon">💡</div><h3 data-uz="Loyihalar va ijod" data-en="Projects and Creativity">Loyihalar va ijod</h3><p data-uz="O‘quvchilar loyihalari va ijodiy faoliyati." data-en="Student projects and creative activities.">O‘quvchilar loyihalari va ijodiy faoliyati.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div class="eyebrow">CONTACT INFORMATION</div>
+      <h2 data-uz="Biz bilan bog‘laning" data-en="Get in Touch">Biz bilan bog‘laning</h2>
+      <p data-uz="Maktabning rasmiy manzili, telefon raqami va elektron pochtasi tasdiqlangandan so‘ng shu yerda e'lon qilinadi." data-en="The school's official address, phone number and email will be published here after verification.">
+        Maktabning rasmiy manzili, telefon raqami va elektron pochtasi tasdiqlangandan so‘ng shu yerda e'lon qilinadi.
+      </p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>2-sonli o‘rta ta’lim maktabi</strong>
+      <p>School No. 2 | Bukhara Region</p>
+    </div>
+    <p>© 2026 • DEMO WEBSITE • Not an official school website</p>
+  </div>
+</footer>
+
+<script>
+let currentLanguage = 'uz';
+
+function setLanguage(){
+  currentLanguage = currentLanguage === 'uz' ? 'en' : 'uz';
+  document.documentElement.lang = currentLanguage;
+  document.getElementById('langBtn').textContent =
+    currentLanguage === 'uz' ? 'EN' : 'UZ';
+
+  document.querySelectorAll('[data-uz][data-en]').forEach(element=>{
+    element.textContent = element.dataset[currentLanguage];
+  });
+}
+
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  document.getElementById('themeBtn').textContent =
+    document.body.classList.contains('dark') ? '☀️' : '🌙';
+}
+
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+document.querySelectorAll('.nav-links a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
